@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+
+/* base styles */
+* {
+  margin: 0;
+  font-family: "Quicksand";
+  color: #333;
+}
+.navbar {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  max-width: 600px;
+  margin: 0 auto;
+  border-bottom: 1px solid #f2f2f2;
+}
+.navbar h1 {
+  color: #f06d16;
+}
+
+.navbar a {
+  font-weight: 600;
+  margin-left: auto;
+  text-decoration: none;
+  padding: 6px;
+}
+.navbar a:hover {
+  color: #f06d16;
+}
+.content {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+}
+main {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+/* movies*/
+.movie-name {
+  padding: 10px 16px;
+  margin: 20px 0;
+  border-bottom: 1px solid #fafafa;
+}
+.movie-name:hover {
+  box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.5);
+}
+.movie-name h2 {
+  font-size: 25px;
+  color: #000000;
+  margin-bottom: 8px;
+}
+.movie-name p {
+  font-size: 20px;
+  color: #000000;
+  margin-bottom: 8px;
+}
+
+/*Person*/
+.card-list {
+  padding: 10px 16px;
+  margin: 20px 0;
+  border-bottom: 1px solid #38383841;
+  border-radius: 5px 5px 5px 5px;
+  list-style: none;
+}
+.card-list:hover {
+  box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.5);
+}
+.card-list h2 {
+  font-size: 25px;
+  color: #000000;
+  margin-bottom: 8px;
+}
+.card-list h4 {
+  font-size: 20px;
+  color: #000000;
+  margin-bottom: 8px;
+  display: inline-block;
+}
