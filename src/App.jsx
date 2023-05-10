@@ -17,7 +17,7 @@ function App() {
           <main>
             <Routes>
               <Route path='/' element={<PersonList />}/>
-              <Route path='PersonGList' element={<PersonGList />}/>
+              <Route path='PersonGList/:firstName' element={<PersonGList />}/>
               <Route path='Movies' element={<Movies />}/>
             </Routes>
           </main>

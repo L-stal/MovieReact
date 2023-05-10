@@ -1,37 +1,50 @@
 import React from 'react';
 import axios from 'axios';
+import { useState , useEffect} from 'react';
+import { useParams } from 'react-router-dom';
 
 
-export default class PersonList extends React.Component {
-    state = {
-      persons: [],
-      movies: [],
-    }
-  
-    componentDidMount() {
-      axios.get(`https://localhost:7125/api/PersonGenre?Name=Leo`)
-        .then(res => {
-          const persons = res.data;
-          this.setState({ persons });
+export default function PersonGList() {
+  const [movies, setMovie] = useState([]);
+  const [persons, setPersons] = useState([]);
+  const [rating, setRating] =useState([]);
+
+    let {firstName} = useParams();
+    useEffect(() => {
+      ApiCalls();
+    }, []);
+
+
+
+      const ApiCalls = () => {
+      axios.get(`https://localhost:7125/api/PersonGenre?Name=${firstName}`)
+      .then(res => {
+        setPersons(res.data)
         })
         .catch(error => {
           console.log(error);
         });
         
-      axios.get(`https://localhost:7125/api/Person/GetMoviesGenre?Name=Leo`)
+      axios.get(`https://localhost:7125/api/Person/GetMoviesGenre?Name=${firstName}`)
         .then(res => {
-          const movies = res.data;
-          this.setState({ movies });
+          setMovie(res.data)
+        })
+        .catch(error => {
+          console.log(error);
+        });
+        axios.get(`https://localhost:7125/api/Person/GetRating?Name=${firstName}`)
+        .then(res => {
+          setRating(res.data)
         })
         .catch(error => {
           console.log(error);
         });
     }
-  
-    renderPersons() {
+
       return (
+        <div>
         <ul>
-          {this.state.persons.map(person => (
+          {persons.map(person => (
             <div className="card-list">
               <li key={person.personId}>
                 <h2>{person.name}</h2>
@@ -40,30 +53,18 @@ export default class PersonList extends React.Component {
             </div>
           ))}
         </ul>
+                <ul>
+          <p>Added movies</p>
+                {movies.map(movie => (
+                  <div className="card-list">
+                    <li key={movie.moveLink}>
+                      <h2>{movie.movieName}</h2>
+                      {rating.map(rating => {if (rating.movieName == movie.movieName)
+                        {return <h4>Rating: {rating.rating}</h4>}})}
+                    </li>
+                  </div>
+                ))}
+              </ul>
+           </div>
       );
-    }
-    
-    renderMovies() {
-      return (
-        <ul>
-          <p>Rated movies</p>
-          {this.state.movies.map(movie => (
-            <div className="card-list">
-              <li key={movie.moveLink}>
-                <h2>{movie.movieName}</h2>
-              </li>
-            </div>
-          ))}
-        </ul>
-      );
-    }
-    
-    render() {
-      return (
-        <div>
-          {this.renderPersons()}
-          {this.renderMovies()}
-        </div>
-      );
-    }
   }

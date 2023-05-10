@@ -65,8 +65,11 @@ main {
   border-bottom: 1px solid #38383841;
   border-radius: 5px 5px 5px 5px;
   list-style: none;
+  transition: transform 0.5s cubic-bezier(0.39, 0.41, 0.19, 0.82);
 }
 .card-list:hover {
+  transform: scale(1.1);
+  transition: transform 0.5s cubic-bezier(0.39, 0.41, 0.19, 0.82);
   box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.5);
 }
 .card-list h2 {

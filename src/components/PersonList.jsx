@@ -1,39 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
+export default function PersonList() {
+  const [firstName , setFirstName] = useState();
+  const [persons, setPersons] = useState([]);
+  const navigate = useNavigate();
 
-export default class PersonList extends React.Component {
-    state = {
-      persons: []
-    }
-
-  handleClick = (person) => {
-    this.setState({ firstName: person.firstName });
-    console.log(person.firstName);
+  const handleClick = (person) => {
+    setFirstName(person.firstName);
+    navigate(`/PersonGList/${person.firstName}`);
   };
   
-    componentDidMount() {
-      axios.get(`https://localhost:7125/api/Persons/GetPersons`)
-        .then(res => {
-          const persons = res.data;
-          this.setState({ persons });
-        })
-    }
+  useEffect(() => {
+    axios.get('https://localhost:7125/api/Persons/GetPersons')
+      .then(res => {
+        setPersons(res.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
 
-    render() {
-      return (
-        <ul>
-          {
-            this.state.persons
-              .map(person =>
-                <div className="card-list" onClick={() => this.handleClick(person)}>
-                <li key={person.personId}>
-                  <h2>{person.firstName}</h2>
-                  <h4>Email:</h4> {person.email}</li>
-                  </div>
-              )
-          }
-        </ul>
-      )
-    }
-  }
+  return (
+    <ul>
+      {persons.map(person =>
+        <div className="card-list" onClick={() => handleClick(person)} key={person.personId}>
+          <li>
+            <h2>{person.firstName}</h2>
+            <h4>Email:</h4> {person.email}
+          </li>
+        </div>
+      )}
+    </ul>
+  );
+}
