@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import Navbar from './Navbar';
-import Movies from './Movies';
-import Genre from './Genre';
+import Movies from './components/Movies.jsx';
 import PersonList from './components/PersonList.jsx';
 import PersonGList from './components/PersonGList.jsx';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';

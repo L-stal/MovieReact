@@ -7,7 +7,7 @@ const Navbar = () => {
         <nav className="navbar">
             <h1>Supha hot movie api</h1>
                <NavLink to="/">Home</NavLink>
-               <NavLink to="Person">Movie List</NavLink>
+               <NavLink to="Movies">Movie List</NavLink>
         </nav>
     );
 }
