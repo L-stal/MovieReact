@@ -21,6 +21,7 @@ export default function PersonList() {
       .catch((error) => {
         console.log(error);
       });
+    document.title = "Home";
   }, []);
 
   return (

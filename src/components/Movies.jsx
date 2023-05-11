@@ -3,8 +3,10 @@ import { useState, useEffect } from "react";
 
 export default function MovieList() {
   const [movie, setMovies] = useState([]);
+  const POSTER_PREFIX = "https://image.tmdb.org/t/p/original";
 
   useEffect(() => {
+    document.title = "Movie list";
     fetchMovies();
   }, []);
 
@@ -24,9 +26,13 @@ export default function MovieList() {
     <ul>
       {movie.map((movies) => (
         <div className="card-list" key={movies.id}>
+          <img src={POSTER_PREFIX + movies.poster_path} alt="poster" />
           <li>
-            <h2>{movies.title}</h2>
-            <h4>test</h4>
+            <div className="card-text">
+              <h4>{movies.title}</h4>
+              <h5>{movies.overview}</h5>
+              <h4>Rating:{movies.vote_average}</h4>
+            </div>
           </li>
         </div>
       ))}

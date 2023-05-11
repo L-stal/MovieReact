@@ -9,7 +9,9 @@ export default function PersonGList() {
   const [rating, setRating] = useState([]);
 
   let { firstName } = useParams();
+
   useEffect(() => {
+    document.title = firstName + "'s page";
     ApiCalls();
   }, []);
 
