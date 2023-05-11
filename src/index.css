@@ -96,3 +96,42 @@ main {
   flex-direction: column;
   padding-left: 30px;
 }
+.name {
+  margin-right: 20px;
+}
+
+.genres-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.genres-list li {
+  margin-right: 10px;
+}
+
+.selectGenre {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin: 20px 0;
+  border-bottom: 1px solid #38383841;
+  border-radius: 5px 5px 5px 5px;
+  list-style: none;
+  transition: transform 0.5s cubic-bezier(0.39, 0.41, 0.19, 0.82);
+}
+.selectGenre:hover {
+  transform: scale(1.2);
+  transition: transform 0.5s cubic-bezier(0.39, 0.41, 0.19, 0.82);
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+}
+.genre-div {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+  justify-content: space-around;
+  transition: ease-in-out 1sec;
+}
+.show-genre {
+}
