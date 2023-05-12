@@ -9,6 +9,13 @@ export default function PersonGList() {
   const [rating, setRating] = useState([]);
   const [genre, setGenre] = useState([]);
   const [showGenres, setShowGenres] = useState(false);
+  const [showForm, setShowForm] = useState(false);
+  const [movieName, setMovieName] = useState([]);
+  const [movieGenre, setMovieGenre] = useState([]);
+  const [movieLink, setMovieLink] = useState([]);
+  const [showRating, setShowRating] = useState(false);
+  const [movieRating, setMovieRating] = useState([]);
+
   let { firstName } = useParams();
 
   const selectedGenre = async (genres) => {
@@ -23,14 +30,38 @@ export default function PersonGList() {
     ApiCalls();
   };
 
-  // useEffect(() => {
-  //   document.title = firstName + "'s page";
-  //   ApiCalls();
-  // }, []);
+  const addMovie = () => {
+    console.log("Clicked");
+    axios
+      .post(
+        `https://localhost:7125/api/Person/AddMovieLink?personName=${firstName}&movieName=${movieName}&genreName=${movieGenre}&movieLink=${movieLink}`
+      )
+      .catch((err) => {
+        console.error(err);
+      });
+    ApiCalls();
+  };
+
+  const addRating = async () => {
+    console.log("Clicked");
+    await axios
+      .post(
+        `https://localhost:7125/api/Movies/AddRatings?movieName=${movieName}&rating=${movieRating}`
+      )
+      .catch((err) => {
+        console.error(err);
+      });
+    ApiCalls();
+  };
 
   useEffect(() => {
+    document.title = firstName + "'s page";
     ApiCalls();
   }, []);
+
+  // useEffect(() => {
+  //   ApiCalls();
+  // }, []);
 
   const ApiCalls = () => {
     axios
@@ -70,11 +101,48 @@ export default function PersonGList() {
 
   return (
     <div className="main-div">
-      <div className="show-genre">
+      <div className="choices">
         <button onClick={() => setShowGenres(!showGenres)}>
           Add a new liked genre
         </button>
+        <button onClick={() => setShowForm(!showForm)}>Add a new moive</button>
+        <button onClick={() => setShowRating(!showRating)}>
+          Add rating to a moive
+        </button>
       </div>
+      {showForm && (
+        <div className="add-movie">
+          <form onSubmit={addRating}>
+            <ul>
+              <li>
+                <label>Movie Name* </label>
+                <input
+                  type="text"
+                  required
+                  onChange={(e) => setMovieName(e.target.value)}
+                />
+              </li>
+              <li>
+                <label>Genre* </label>
+                <input
+                  type="text"
+                  required
+                  onChange={(e) => setMovieGenre(e.target.value)}
+                />
+              </li>
+              <li>
+                <label>Moive Link* </label>
+                <input
+                  type="text"
+                  required
+                  onChange={(e) => setMovieLink(e.target.value)}
+                />
+              </li>
+              <input type="submit" value="Add new movie."></input>
+            </ul>
+          </form>
+        </div>
+      )}
       {showGenres && (
         <div className="genre-div">
           {genre.map((genres) => {
@@ -90,6 +158,31 @@ export default function PersonGList() {
               );
             }
           })}
+        </div>
+      )}
+      {showRating && (
+        <div className="rating">
+          <form onSubmit={addRating}>
+            <ul>
+              <li>
+                <label>Movie Name* </label>
+                <input
+                  type="text"
+                  required
+                  onChange={(e) => setMovieName(e.target.value)}
+                />
+              </li>
+              <li>
+                <label>Rating* </label>
+                <input
+                  type="text"
+                  required
+                  onChange={(e) => setMovieRating(parseInt(e.target.value))}
+                />
+              </li>
+              <input type="submit" value="Add rating."></input>
+            </ul>
+          </form>
         </div>
       )}
 

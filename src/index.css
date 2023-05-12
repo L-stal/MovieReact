@@ -133,3 +133,21 @@ main {
   justify-content: space-around;
   transition: ease-in-out 1sec;
 }
+.choices {
+  display: flex;
+  justify-content: space-around;
+}
+
+form {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+ul {
+  list-style: none;
+}
+
+.add-movie > ul > li {
+  padding: 50px;
+}
