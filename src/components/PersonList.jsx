@@ -14,7 +14,7 @@ export default function PersonList() {
 
   useEffect(() => {
     axios
-      .get("https://localhost:7125/api/Persons/GetPersons")
+      .get(`https://localhost:7125/api/Persons/GetPersons`)
       .then((res) => {
         setPersons(res.data);
       })

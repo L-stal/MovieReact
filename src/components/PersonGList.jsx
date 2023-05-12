@@ -9,11 +9,26 @@ export default function PersonGList() {
   const [rating, setRating] = useState([]);
   const [genre, setGenre] = useState([]);
   const [showGenres, setShowGenres] = useState(false);
-
   let { firstName } = useParams();
 
+  const selectedGenre = async (genres) => {
+    console.log("Clicked");
+    await axios
+      .post(
+        `https://localhost:7125/api/Person/AddGenre?personName=${firstName}&genreId=${genres.genreId}`
+      )
+      .catch((err) => {
+        console.error(err);
+      });
+    ApiCalls();
+  };
+
+  // useEffect(() => {
+  //   document.title = firstName + "'s page";
+  //   ApiCalls();
+  // }, []);
+
   useEffect(() => {
-    document.title = firstName + "'s page";
     ApiCalls();
   }, []);
 
@@ -56,15 +71,20 @@ export default function PersonGList() {
   return (
     <div className="main-div">
       <div className="show-genre">
-        <button onClick={() => setShowGenres(!showGenres)}>+</button>Add a
-        linked genre
+        <button onClick={() => setShowGenres(!showGenres)}>
+          Add a new liked genre
+        </button>
       </div>
       {showGenres && (
         <div className="genre-div">
           {genre.map((genres) => {
             if (!persons.find((person) => person.name === genres.name)) {
               return (
-                <div className="selectGenre" key={genres.id}>
+                <div
+                  className="selectGenre"
+                  key={genres.id}
+                  onClick={() => selectedGenre(genres)}
+                >
                   <h5>{genres.name}</h5>
                 </div>
               );
