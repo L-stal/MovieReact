@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 export default function PersonGList() {
+  //Delacring all the use stats for the page
   const [movies, setMovie] = useState([]);
   const [persons, setPersons] = useState([]);
   const [rating, setRating] = useState([]);
@@ -15,11 +16,10 @@ export default function PersonGList() {
   const [movieLink, setMovieLink] = useState([]);
   const [showRating, setShowRating] = useState(false);
   const [movieRating, setMovieRating] = useState([]);
-
+  //saving that para for the person you clicked on
   let { firstName } = useParams();
 
   const selectedGenre = async (genres) => {
-    console.log("Clicked");
     await axios
       .post(
         `https://localhost:7125/api/Person/AddGenre?personName=${firstName}&genreId=${genres.genreId}`
@@ -31,7 +31,6 @@ export default function PersonGList() {
   };
 
   const addMovie = () => {
-    console.log("Clicked");
     axios
       .post(
         `https://localhost:7125/api/Person/AddMovieLink?personName=${firstName}&movieName=${movieName}&genreName=${movieGenre}&movieLink=${movieLink}`
@@ -43,7 +42,6 @@ export default function PersonGList() {
   };
 
   const addRating = async () => {
-    console.log("Clicked");
     await axios
       .post(
         `https://localhost:7125/api/Movies/AddRatings?movieName=${movieName}&rating=${movieRating}`
@@ -58,10 +56,6 @@ export default function PersonGList() {
     document.title = firstName + "'s page";
     ApiCalls();
   }, []);
-
-  // useEffect(() => {
-  //   ApiCalls();
-  // }, []);
 
   const ApiCalls = () => {
     axios
@@ -105,6 +99,8 @@ export default function PersonGList() {
         <button onClick={() => setShowGenres(!showGenres)}>
           Add a new liked genre
         </button>
+        //set the stats to true when they are clicked to show diffrent divs
+        below
         <button onClick={() => setShowForm(!showForm)}>Add a new moive</button>
         <button onClick={() => setShowRating(!showRating)}>
           Add rating to a moive
@@ -207,6 +203,8 @@ export default function PersonGList() {
           <div className="card-list">
             <li key={movie.moveLink}>
               <h2>{movie.movieName}</h2>
+              //maps trough the rating and movies to check if the use has ratted
+              specific movie
               {rating.map((rating) => {
                 if (rating.movieName == movie.movieName) {
                   return <h4>Personal rating: {rating.rating}</h4>;
