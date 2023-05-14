@@ -39,7 +39,6 @@ All of the tools used during the development of this program:
 - React 18.2.0
 - Axios 1.4.0
 - React router dom 6.11.1
-- Styled components 5.3.10
 - Vite 4.3.2
 
 #### Languages
