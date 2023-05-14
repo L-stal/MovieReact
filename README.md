@@ -22,8 +22,8 @@ Within each profile, you can:
 
 
 ## Reflection
-The things that need to be improved, after a while into the project I realized that the minimal API I used for the project where lacking in API calls, and the structure could use a big improvement to optimize the web application.
-I could have gone back and changed alot of structure but I did not learn how to handle the problems and learn what to think of next time I build a database.
+After a while into the project I realized that the minimal API I used for the project where lacking in API calls, and the structure could use a big improvement to optimize the web application.
+I could have gone back and changed alot of structure but I did not,i wanted to learn how to handle the problems and what to think of next time I build a database.
 The styling are still a work in progress
 
 ## Tools
