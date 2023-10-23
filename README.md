@@ -14,17 +14,19 @@ Persons on the home/main page are clickable and will get you to their "profile" 
 Within each profile, you can:
 - Add a favorite genre
 - Add a new movie
-- Rate and added movie
+- Rate and add movies
 - View all genres
 - View all movies added
 - View the rating of a movie
 
-
+<picture>
+<img width="600" alt="Container diagram." src="SHMD.png">
+</picture>
 
 ## Reflection
-After a while into the project I realized that the minimal API I used for the project where lacking in API calls, and the structure could use a big improvement to optimize the web application.
-I could have gone back and changed alot of structure but I did not,i wanted to learn how to handle the problems and what to think of next time I build a database.
-The styling are still a work in progress
+After a while into the project, I realized that the minimal API I used for the project where lacking in API calls, and the structure could use a big improvement to optimize the web application.
+I could have gone back and changed a lot of structure but I did not, i wanted to learn how to handle the problems and what to think of next time I build a database.
+The styling is still a work in progress
 
 ## Tools
 
