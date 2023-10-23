@@ -20,7 +20,7 @@ Within each profile, you can:
 - View the rating of a movie
 
 <picture>
-<img width="600" alt="Container diagram." src="SHMD.png">
+<img width="800" alt="Container diagram." src="SHMD.png">
 </picture>
 
 ## Reflection
